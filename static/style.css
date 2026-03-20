@@ -1,12 +1,135 @@
-/* Modern CSS Reset & Basics */
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800&f[]=satoshi@400,500,700&display=swap');
+
+/* Cinematic Hero Fold with Portal Effect */
+.hero-fold {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    flex-direction: column;
+    padding: 0 1rem;
+    background-color: var(--bg-primary);
+}
+
+.portal-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 1200px;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+    opacity: 0.6;
+    animation: portal-pulse 8s infinite alternate ease-in-out;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes portal-pulse {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    100% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.8; }
+}
+
+.portal-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.ring-outer {
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-dasharray: 4, 16;
+    transform-origin: center;
+    animation: ring-rotate 20s linear infinite;
+}
+
+.ring-inner {
+    stroke: rgba(255, 255, 255, 0.05);
+    stroke-dasharray: 1, 8;
+    transform-origin: center;
+    animation: ring-rotate-reverse 15s linear infinite;
+}
+
+@keyframes ring-rotate { 100% { transform: rotate(360deg); } }
+@keyframes ring-rotate-reverse { 100% { transform: rotate(-360deg); } }
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero-headline {
+    font-size: 5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    font-family: 'Cabinet Grotesk', sans-serif;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.metallic-headline {
+    background: linear-gradient(to bottom, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtext {
+    max-width: 42rem;
+    margin: 0 auto 2.5rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 1.125rem;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.hero-actions a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #ffffff;
+    color: #020617;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.02);
+    color: #ffffff;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+}
+
+.btn-primary:hover { filter: brightness(0.9); }
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.04); }
+
 :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f4f4f5; /* zinc-100 */
-    --text-primary: #09090b; /* zinc-950 */
-    --text-secondary: #71717a; /* zinc-500 */
-    --accent: #18181b; /* zinc-900 */
-    --accent-hover: #27272a; /* zinc-800 */
-    --border: #e4e4e7; /* zinc-200 */
+    --bg-primary: #020617;
+    --bg-secondary: rgba(255, 255, 255, 0.03);
+    --text-primary: #ffffff;
+    --text-secondary: #94A3B8;
+    --accent: #ffffff;
+    --accent-hover: rgba(255,255,255,0.9);
+    --border: rgba(255, 255, 255, 0.1);
     
     font-size: 16px;
 }
@@ -17,12 +140,15 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Satoshi', system-ui, sans-serif;
     color: var(--text-primary);
-    background-color: #f7f8f9; /* added subtle background contrast and frame effect */
-    overflow: hidden; /* Handle scroll in chat-area */
-    height: 100vh;
+    background-color: var(--bg-primary);
+    font-weight: 500;
 }
 
 /* Chat Layout */
@@ -30,22 +156,24 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    max-width: 600px; /* Standard sidebar size, centered */
+    max-width: 600px;
     margin: 0 auto;
     border-right: 1px solid var(--border);
     border-left: 1px solid var(--border);
+    background: radial-gradient(circle at center, rgba(30, 41, 59, 0.25) 0%, rgba(2, 6, 23, 1) 70%);
+    scroll-margin-top: 0;
+    overflow: hidden;
 }
 
 /* Header */
 .chat-header {
-    padding: 1rem 1.5rem; /* Reduced padding for tighter header */
+    padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    background-color: rgba(2, 6, 23, 0.65);
+    backdrop-filter: blur(20px);
     z-index: 10;
 }
 
@@ -56,15 +184,16 @@ body {
 }
 
 .avatar {
-    background-color: var(--accent); /* zinc-900 */
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #020617;
+    font-family: 'Cabinet Grotesk', sans-serif;
     width: 36px;
     height: 36px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1.125rem;
     letter-spacing: -0.025em;
     flex-shrink: 0;
@@ -78,19 +207,24 @@ body {
 
 .header-title {
     font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    color: var(--text-primary);
+    font-weight: 800;
+    font-family: 'Cabinet Grotesk', sans-serif;
+    letter-spacing: -0.03em;
+    background: linear-gradient(to bottom, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .status-badge {
-    background: #f4f4f5; /* zinc-100 */
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--border);
     padding: 0.1875rem 0.5rem;
     border-radius: 2rem;
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
+    backdrop-filter: blur(10px);
 }
 
 @keyframes pulse-green {
@@ -109,10 +243,10 @@ body {
 
 .status-text {
     font-size: 0.625rem;
-    font-weight: 600;
-    color: #18181b; /* zinc-900 */
+    font-weight: 700;
+    color: #ffffff;
     text-transform: uppercase;
-    letter-spacing: 0.025em;
+    letter-spacing: 0.05em;
 }
 
 .header-subtitle {
@@ -131,7 +265,7 @@ body {
     flex-direction: column;
     position: relative;
     scroll-behavior: smooth;
-    background-color: #fafbfc; /* Offset backing inside frames for popping white elements */
+    background-color: transparent;
 }
 
 /* Thin Scrollbar support */
@@ -144,7 +278,7 @@ body {
 }
 
 .chat-area::-webkit-scrollbar-thumb {
-    background-color: #e4e4e7; /* zinc-200 */
+    background-color: rgba(255, 255, 255, 0.12);
     border-radius: 6px;
 }
 
@@ -166,14 +300,28 @@ body {
 .welcome-text h2 {
     font-size: 1.75rem;
     font-weight: 800;
+    font-family: 'Cabinet Grotesk', sans-serif;
     letter-spacing: -0.04em;
     margin-bottom: 0.5rem;
+    background: linear-gradient(to bottom, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .welcome-text p {
     font-size: 0.9375rem;
+    color: var(--text-primary);
+    max-width: 440px;
+    line-height: 1.5;
+}
+
+.supporting-text {
+    font-size: 0.8125rem;
     color: var(--text-secondary);
-    max-width: 320px;
+    max-width: 380px;
+    margin: 0.375rem auto 0;
+    opacity: 0.8;
 }
 
 .suggestion-chips {
@@ -186,7 +334,7 @@ body {
 }
 
 .suggestion-chip {
-    background: var(--bg-primary);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 0.75rem;
     padding: 0.875rem 1rem;
@@ -195,14 +343,15 @@ body {
     justify-content: space-between;
     cursor: pointer;
     text-align: left;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    backdrop-filter: blur(10px);
 }
 
 .suggestion-chip:hover {
-    border-color: var(--accent);
-    background-color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03); /* Added subtle lift shadow */
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.04);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
 
 .chip-text {
@@ -255,18 +404,19 @@ body {
 
 .message-bubble.user {
     align-self: flex-end;
-    background-color: #27272a; /* zinc-800 instead of pure black */
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #020617;
+    font-weight: 600;
     border-bottom-right-radius: 0.25rem;
 }
 
 .message-bubble.assistant {
     align-self: flex-start;
-    background-color: #ffffff; /* Absolute White to stand on top fafbfc frames */
+    background-color: rgba(255, 255, 255, 0.03);
     color: var(--text-primary);
-    border: 1px solid #e5e7eb; /* distinct border setup */
+    border: 1px solid var(--border);
     border-bottom-left-radius: 0.25rem;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    backdrop-filter: blur(12px);
 }
 
 /* Markdown styling inside bubbles */
@@ -330,23 +480,25 @@ body {
 .chat-footer {
     padding: 1rem 1.5rem 1.5rem;
     border-top: 1px solid var(--border);
-    background-color: var(--bg-primary);
+    background-color: rgba(2, 6, 23, 0.65);
+    backdrop-filter: blur(20px);
 }
 
 .input-container {
     display: flex;
     align-items: flex-end;
     gap: 0.75rem;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 0.75rem;
     padding: 0.5rem 0.75rem;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(16px);
 }
 
 .input-container:focus-within {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(24, 24, 27, 0.05); /* Added glow outline trigger focus rings boundings */
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.03);
 }
 
 textarea#messageInput {
@@ -359,11 +511,13 @@ textarea#messageInput {
     line-height: 1.5;
     padding: 0.375rem 0.25rem;
     max-height: 120px;
+    background: transparent;
+    color: #ffffff;
 }
 
 .send-button {
-    background: var(--accent);
-    color: #ffffff;
+    background: #ffffff;
+    color: #020617;
     border: none;
     width: 32px;
     height: 32px;

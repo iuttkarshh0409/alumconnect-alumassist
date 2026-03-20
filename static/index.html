@@ -22,6 +22,13 @@
     <script src="https://unpkg.com/tippy.js@6"></script>
 </head>
 <body>
+    <!-- 🌠 Ambient Space Portal Backdrop for the overall Workspace -->
+    <div class="portal-pulse"></div>
+    <svg class="portal-rings" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke-width="0.3" class="ring-outer" />
+        <circle cx="50" cy="50" r="30" fill="none" stroke-width="0.3" class="ring-inner" />
+    </svg>
+
     <div class="chat-container">
         <!-- Header -->
         <header class="chat-header">
@@ -49,7 +56,8 @@
             <div id="emptyState" class="empty-state">
                 <div class="welcome-text" data-aos="fade-down" data-aos-duration="400">
                     <h2>Stop overthinking. Let's build.</h2>
-                    <p>Direct, raw advice from an alumnus who's actually been there.</p>
+                    <p>Direct, practical career advice — no fluff, no confusion, just next steps.</p>
+                    <p class="supporting-text">Built for students who are tired of confusion and want direction.</p>
                 </div>
                 <div class="suggestion-chips">
                     <button class="suggestion-chip" onclick="sendSuggestion('How do I get my first internship?')" data-aos="fade-up" data-aos-delay="100">
