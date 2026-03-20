@@ -97,7 +97,7 @@ The AI avoids vague motivational responses, explicitly gives actionable steps, r
 
 ## 🌐 Links & Media
 
-*   👉 **Live Demo**: *[Add your Vercel link here]*
+*   👉 **Live Demo**: *https://alumconnect-alumassist.vercel.app/*
 *   🎥 **Loom Walkthrough**: *[Add Loom video link here]*
 
 ---
