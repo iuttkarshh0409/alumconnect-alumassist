@@ -554,7 +554,7 @@ textarea#messageInput {
 }
 
 .message-bubble.user .timestamp {
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(2, 6, 23, 0.65);
 }
 
 /* Desktop Centering adjustment */
