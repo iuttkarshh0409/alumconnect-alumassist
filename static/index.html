@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlumAssist | Alumni Career Copilot</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Libraries JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Header -->
+        <header class="chat-header">
+            <div class="header-left">
+                <div class="avatar">A</div>
+                <div class="header-content">
+                    <div class="header-title-row">
+                        <h1 class="header-title">AlumAssist</h1>
+                        <span class="status-badge">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Active now</span>
+                        </span>
+                    </div>
+                    <p class="header-subtitle">Powered by real alumni thinking</p>
+                </div>
+            </div>
+            <button id="clearChatBtn" class="clear-chat-btn" title="Clear Chat">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2M10 11v6M14 11v6"/></svg>
+            </button>
+        </header>
+
+        <!-- Chat Area -->
+        <main class="chat-area" id="chatArea">
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state">
+                <div class="welcome-text" data-aos="fade-down" data-aos-duration="400">
+                    <h2>Stop overthinking. Let's build.</h2>
+                    <p>Direct, raw advice from an alumnus who's actually been there.</p>
+                </div>
+                <div class="suggestion-chips">
+                    <button class="suggestion-chip" onclick="sendSuggestion('How do I get my first internship?')" data-aos="fade-up" data-aos-delay="100">
+                        <span class="chip-text">How do I get my first internship?</span>
+                        <svg class="chip-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <button class="suggestion-chip" onclick="sendSuggestion('I’m confused between AI and Web Dev')" data-aos="fade-up" data-aos-delay="200">
+                        <span class="chip-text">I’m confused between AI and Web Dev</span>
+                        <svg class="chip-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <button class="suggestion-chip" onclick="sendSuggestion('What skills should I learn in 2026?')" data-aos="fade-up" data-aos-delay="300">
+                        <span class="chip-text">What skills should I learn in 2026?</span>
+                        <svg class="chip-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <button class="suggestion-chip" onclick="sendSuggestion('How do I build a strong portfolio?')" data-aos="fade-up" data-aos-delay="400">
+                        <span class="chip-text">How do I build a strong portfolio?</span>
+                        <svg class="chip-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Message Container (Dynamic) -->
+            <div id="messageContainer" class="message-container"></div>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="loading-indicator hidden">
+                <div class="typing-bubble">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <span class="loading-text">Yashvi is thinking...</span>
+            </div>
+        </main>
+
+        <!-- Input Area -->
+        <footer class="chat-footer">
+            <div class="input-container">
+                <textarea id="messageInput" placeholder="Ask about career, skills, or internships..." rows="1"></textarea>
+                <button id="sendBtn" class="send-button" disabled>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
