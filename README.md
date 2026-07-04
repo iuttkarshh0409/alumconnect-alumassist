@@ -3,7 +3,7 @@
 > **AlumAssist** is a focused, mentor-style chatbot designed to provide direct, practical career guidance for students. 
 
 Built as a feature within the **AlumConnect** ecosystem, it simulates how an experienced alumnus would guide a junior — with absolute clarity, structure, and **zero fluff**.
-Live Link: https://www.alumconnectiips.app/
+
 
 ---
 
